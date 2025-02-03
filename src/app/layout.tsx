@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import QueryProvider from "@/components/provider/query-provider";
 import { ThemeProvider } from "@/components/provider/theme-provider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import "./globals.css";
+import NavigationBar from "@/components/navigation/nav-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,9 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     //suppress temporary hydration warnings because of a theme-provider bug
     <html lang="en" suppressHydrationWarning>
@@ -37,8 +37,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <NavigationBar />
             {children}
           </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryProvider>
       </body>
     </html>
