@@ -5,5 +5,15 @@ model User{
     username String @unique
     password String
 
+    alias String?
+    displayName String?
+    profileViews Int @default(0)
+
+    badges Badges[]
+    links Links[]
     sessions Session[]
+    color Color?
+    general General?
+    assets Assets?
+    other Other?
 }

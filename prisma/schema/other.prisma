@@ -1,0 +1,11 @@
+model Other{
+    id String @id @default(uuid())
+    userId String @unique
+
+    monochromeIcons Boolean         @default(true)
+    animatedTitle   Boolean         @default(false)
+    volumeControl   Boolean         @default(false)
+    useDiscordAvatar Boolean        @default(false)
+
+    user User @relation(fields: [userId], references: [id])
+}

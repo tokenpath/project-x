@@ -1,0 +1,13 @@
+enum Badges {
+  staff
+  premium
+  verified
+  donor 
+  og
+  serverBooster 
+  winner
+  secondPlace
+  thirdPlace
+  imageHost
+  bugHunter
+}

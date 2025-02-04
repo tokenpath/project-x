@@ -1,0 +1,43 @@
+model Links {
+    id String @id @default(uuid())
+    userId String
+
+    linkType LinkType
+    linkUrl String
+
+    user User @relation(fields: [userId], references: [id])
+}
+
+enum LinkType {
+  snapchat 
+  youtube
+  discord
+  spotify
+  instagram
+  twitter
+  tiktok
+  telegram
+  soundcloud
+  paypal
+  github
+  roblox
+  cashapp
+  gitlab
+  twitch
+  reddit
+  namemc
+  linkedin
+  steam
+  kick
+  pinterest
+  lastfm
+  buymeacoffee
+  kofi
+  facebook
+  bitcoin
+  ethereum
+  litecoin
+  monero
+  email
+}
+

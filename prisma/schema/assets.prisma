@@ -1,0 +1,11 @@
+model Assets{
+    id String @id @default(uuid())
+    userId String @unique
+
+    background String
+    audio String
+    profileAvatar String
+    customCursor String
+
+    user User @relation(fields: [userId], references: [id])
+}

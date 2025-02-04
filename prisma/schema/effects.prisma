@@ -1,0 +1,21 @@
+enum BackgroundEffects {
+  none
+  snowflakes
+  rain
+  blurredBackground
+  nightTime
+  oldTv
+}
+
+enum UsernameEffects {
+  none
+  rainbow
+  blackSparkles
+  blueSparkles
+  greenSparkles
+  pinkSparkles
+  redSparkles
+  whiteSparkles
+  yellowSparkles
+  typewriter
+}

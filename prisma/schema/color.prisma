@@ -1,0 +1,15 @@
+model Color{
+    id String @id @default(uuid())
+    userId String @unique
+
+    accentColor     String          @default("0xFFFFFF")
+    textColor       String          @default("0xFFFFFF")
+    backgroundColor String          @default("0xFFFFFF")
+    iconColor       String          @default("0xFFFFFF")
+    primaryColor    String          @default("0xFFFFFF")
+    secondaryColor  String          @default("0xFFFFFF")
+
+    profileGradient Boolean         @default(false)
+
+    user User @relation(fields: [userId], references: [id])
+}

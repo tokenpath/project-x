@@ -1,8 +1,10 @@
 model Session {
   id              String          @id @default(uuid())
+  userId          String         
+
   sessionToken    String          @unique
   createdAt       DateTime        @default(now())
   expiresAt       DateTime
-  userId          String          
+   
   user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

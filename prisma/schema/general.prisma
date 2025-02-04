@@ -1,0 +1,19 @@
+model General{
+    id String @id @default(uuid())
+    userId String @unique
+
+    description String?
+
+    backgroundEffect BackgroundEffects @default(none)
+    usernameEffect UsernameEffects @default(none)
+
+    profileOpacity Int @default(50)
+    profileBlur Int @default(10)
+
+    swapBoxColors Boolean @default(false)
+    socialGlow Boolean @default(true)
+    usernameGlow Boolean @default(true)
+    badgeGlow Boolean @default(true)
+
+    user User @relation(fields: [userId], references: [id])
+}
