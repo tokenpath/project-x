@@ -4,7 +4,6 @@ import QueryProvider from "@/components/provider/query-provider";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "./globals.css";
-import NavigationBar from "@/components/navigation/nav-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,7 +36,6 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <NavigationBar />
             {children}
           </ThemeProvider>
           <ReactQueryDevtools initialIsOpen={false} />
