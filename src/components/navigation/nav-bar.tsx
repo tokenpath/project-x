@@ -6,8 +6,8 @@ import Link from "next/link";
 import SignOutButton from "./client/signout-button";
 import SignInButton from "./client/signin-button";
 import SignUpButton from "./client/signup-button";
-import "./nav-bar.css";
 import { useMe } from "@/hooks/auth/MeHook";
+import "./nav-bar.css";
 
 const AuthButtons = () => {
   const { user, isLoading } = useMe();
