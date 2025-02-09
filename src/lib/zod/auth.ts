@@ -32,3 +32,40 @@ export const SignInSchema = z
   });
 
 export type SignInData = z.infer<typeof SignInSchema>;
+
+
+export const SettingsSchema = z
+  .object({
+    operation: z
+      .string()
+      .refine((value) => ["changeEmail", "changePassword"].includes(value), {
+        message: "Invalid operation. Must be 'changeEmail' or 'changePassword'",
+      }),
+    newEmail: z
+      .string()
+      .email({ message: "Invalid email" })
+      .optional(),
+    oldPassword: z
+      .string()
+      .min(12, { message: "Password too short" })
+      .max(100, { message: "Password too long" })
+      .optional(),
+    newPassword: z
+      .string()
+      .min(12, { message: "Password too short" })
+      .max(100, { message: "Password too long" })
+      .optional(),
+  })
+  .refine((data) => {
+    if (data.operation === "changeEmail") {
+      return !!data.newEmail;
+    } else if (data.operation === "changePassword") {
+      return !!data.oldPassword && !!data.newPassword;
+    } else {
+      return false;
+    }
+  }, {
+    message: "Invalid data for operation. Please provide required fields.",
+  });
+
+export type SettingsData = z.infer<typeof SettingsSchema>;
