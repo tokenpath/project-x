@@ -3,7 +3,7 @@ import axios, { AxiosError } from 'axios';
 import { SettingsSchema, SettingsData } from "@/lib/zod/auth";
 import { ApiError, ApiResponse } from '@/types/api/responses';
 
-export const UpdateSettingsHook = () => {
+export const SettingsHook = () => {
   const updateSettings = async (data: SettingsData): Promise<ApiResponse> => {
     try {
       const validatedData = SettingsSchema.parse(data);
