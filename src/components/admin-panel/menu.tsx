@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Ellipsis, LogOut } from "lucide-react";
+import { Ellipsis, LogOut, Share2 } from "lucide-react";
 import { usePathname } from "next/navigation";
-
 import { cn } from "@/lib/utils";
 import { getMenuList } from "@/lib/menu-list";
 import { Button } from "@/components/ui/button";
@@ -13,7 +12,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-  TooltipProvider
+  TooltipProvider,
 } from "@/components/ui/tooltip";
 
 interface MenuProps {
@@ -114,32 +113,49 @@ export function Menu({ isOpen }: MenuProps) {
             </li>
           ))}
           <li className="w-full grow flex items-end">
-            <TooltipProvider disableHoverableContent>
-              <Tooltip delayDuration={100}>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={() => {}}
-                    variant="outline"
-                    className="w-full justify-center h-10 mt-5"
-                  >
-                    <span className={cn(isOpen === false ? "" : "mr-4")}>
-                      <LogOut size={18} />
-                    </span>
-                    <p
-                      className={cn(
-                        "whitespace-nowrap",
-                        isOpen === false ? "opacity-0 hidden" : "opacity-100"
-                      )}
+            <div className="w-full flex space-x-2">
+              <TooltipProvider disableHoverableContent>
+                <Tooltip delayDuration={100}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => {}}
+                      variant="outline"
+                      className="flex-grow justify-center h-10 mt-5"
                     >
-                      Sign out
-                    </p>
-                  </Button>
-                </TooltipTrigger>
-                {isOpen === false && (
-                  <TooltipContent side="right">Sign out</TooltipContent>
-                )}
-              </Tooltip>
-            </TooltipProvider>
+                      <span className={cn(isOpen === false ? "" : "mr-4")}>
+                        <LogOut size={18} />
+                      </span>
+                      <p
+                        className={cn(
+                          "whitespace-nowrap",
+                          isOpen === false ? "opacity-0 hidden" : "opacity-100"
+                        )}
+                      >
+                        Sign out
+                      </p>
+                    </Button>
+                  </TooltipTrigger>
+                  {isOpen === false && (
+                    <TooltipContent side="right">Sign out</TooltipContent>
+                  )}
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider disableHoverableContent>
+                <Tooltip delayDuration={100}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => {}}
+                      variant="outline"
+                      className="h-10 w-10 p-0 mt-5"
+                    >
+                      <Share2 size={18} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">Share</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
           </li>
         </ul>
       </nav>
