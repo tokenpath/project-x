@@ -5,7 +5,13 @@ import {
   Bookmark,
   SquarePen,
   LayoutGrid,
-  LucideIcon
+  LucideIcon,
+  User,
+  Award,
+  Paintbrush,
+  Link,
+  Image,
+  FileText
 } from "lucide-react";
 
 type Submenu = {
@@ -30,58 +36,51 @@ type Group = {
 export function getMenuList(): Group[] {
   return [
     {
-      groupLabel: "",
-      menus: [
-        {
-          href: "/dashboard",
-          label: "Dashboard",
-          icon: LayoutGrid,
-          submenus: []
-        }
-      ]
-    },
-    {
-      groupLabel: "Contents",
+      groupLabel: "Account",
       menus: [
         {
           href: "",
-          label: "Posts",
-          icon: SquarePen,
+          label: "Account",
+          icon: User,
           submenus: [
             {
-              href: "/posts",
-              label: "All Posts"
+              href: "/dashboard/overview",
+              label: "Overview"
             },
             {
-              href: "/posts/new",
-              label: "New Post"
+              href: "/dashboard/badges",
+              label: "Badges"
+            },
+            {
+              href: "/dashboard/settings",
+              label: "Settings"
             }
           ]
-        },
-        {
-          href: "/categories",
-          label: "Categories",
-          icon: Bookmark
-        },
-        {
-          href: "/tags",
-          label: "Tags",
-          icon: Tag
         }
       ]
     },
     {
-      groupLabel: "Settings",
+      groupLabel: "Customization",
       menus: [
         {
-          href: "/users",
-          label: "Users",
-          icon: Users
+          href: "/dashboard/customize",
+          label: "Customize",
+          icon: Paintbrush
         },
         {
-          href: "/account",
-          label: "Account",
-          icon: Settings
+          href: "/dashboard/links",
+          label: "Links",
+          icon: Link
+        },
+        {
+          href: "/dashboard/imagehost",
+          label: "Image Host",
+          icon: Image
+        },
+        {
+          href: "/dashboard/templates",
+          label: "Templates",
+          icon: FileText
         }
       ]
     }
