@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
-import { decrypt } from "@/lib/crypto";
-import { Session } from "@prisma/client";
+import UserHelper from "@/lib/user/user";
 
 export async function GET() {
   try {
-    const cookieStore = await cookies();
-    const authCookie = cookieStore.get("auth");
+    const authCookie = (await cookies()).get("auth");
 
     if (!authCookie) {
       return NextResponse.json(
@@ -16,34 +14,14 @@ export async function GET() {
       );
     }
 
-    const sessionData = await decrypt<Session>(authCookie.value);
+    const userOrResponse = await UserHelper.GetCurrent(authCookie.value);
 
-    if (!sessionData || !sessionData.sessionToken) {
-      return NextResponse.json(
-        { isAuthenticated: false, message: "Invalid session" },
-        { status: 401 }
-      );
+    if (userOrResponse instanceof NextResponse) {
+      return userOrResponse; 
+    } else {
+      return NextResponse.json(userOrResponse);
     }
 
-    const session = await prisma.session.findUnique({
-      where: { sessionToken: sessionData.sessionToken },
-      include: { user: true },
-    });
-
-    if (!session || new Date(session.expiresAt) < new Date()) {
-      return NextResponse.json(
-        { isAuthenticated: false, message: "Session expired" },
-        { status: 401 }
-      );
-    }
-
-    const user = await prisma.user.findFirst({
-      where: {
-        id: session.userId,
-      },
-    });
-
-    return NextResponse.json(user);
   } catch (error) {
     console.error("Failed due to: ", error);
     return NextResponse.json(
